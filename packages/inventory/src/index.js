@@ -6,10 +6,10 @@ const express = require('express');
 // Load environment settings
 require('dotenv').config();
 
-// Custom products
-const products = require('../data/products.js');
+// Custom inventory
+const inventory = require('../data/inventory.js');
 
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 4004;
 
 // -----------------------------------------
 // Schema definition
@@ -17,28 +17,31 @@ const PORT = process.env.PORT || 4002;
 
 // TypeDefs
 const typeDefs = gql`
-  extend type Query {
-    topProducts(first: Int = 5): [Product]
-  }
-
-  type Product @key(fields: "upc") {
-    upc: String!
-    name: String!
-    price: Int
-    weight: Int
+  extend type Product @key(fields: "upc") {
+    upc: String! @external
+    weight: Int @external
+    price: Int @external
+    inStock: Boolean
+    shippingEstimate: Int @requires(fields: "price weight")
   }
 `;
 
 // Resolvers
 const resolvers = {
-  Query: {
-    topProducts(_, args) {
-      return products.slice(0, args.first);
-    }
-  },
   Product: {
     __resolveReference(object) {
-      return products.find(product => product.upc === object.upc);
+      return {
+        ...object,
+        ...inventory.find(item => item.upc === object.upc)
+      };
+    },
+    shippingEstimate(object) {
+      // Free for expensive items
+      if (object.price > 1000) {
+        return 0;
+      }
+      // Estimate shipping price based on weight
+      return object.weight * 0.5;
     }
   }
 };

@@ -31,6 +31,13 @@
       "name": "Launch API-PRODUCTS",
       "program": "${workspaceFolder}/packages/products/src/index.js",
       "envFile": "${workspaceFolder}/packages/products/.env"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API-INVENTORY",
+      "program": "${workspaceFolder}/packages/inventory/src/index.js",
+      "envFile": "${workspaceFolder}/packages/inventory/.env"
     }
   ]
 }
