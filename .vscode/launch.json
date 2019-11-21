@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API",
+      "program": "${workspaceFolder}/packages/api/src/index.js",
+      "envFile": "${workspaceFolder}/packages/api/.env"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API-ACCOUNTS",
+      "program": "${workspaceFolder}/packages/accounts/src/index.js",
+      "envFile": "${workspaceFolder}/packages/accounts/.env"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API-REVIEWS",
+      "program": "${workspaceFolder}/packages/reviews/src/index.js",
+      "envFile": "${workspaceFolder}/packages/reviews/.env"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API-PRODUCTS",
+      "program": "${workspaceFolder}/packages/products/src/index.js",
+      "envFile": "${workspaceFolder}/packages/products/.env"
+    }
+  ]
+}
