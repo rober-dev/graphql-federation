@@ -9,7 +9,7 @@ require('dotenv').config();
 // Custom inventory
 const inventory = require('../data/inventory.js');
 
-const PORT = process.env.PORT || 4004;
+const PORT = process.env.PORT || 5004;
 
 // -----------------------------------------
 // Schema definition

@@ -4,10 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start-service-api": "yarn --cwd packages/api start",
+    "start-service-accounts": "yarn --cwd packages/accounts start",
+    "start-service-products": "yarn --cwd packages/products start",
+    "start-service-reviews": "yarn --cwd packages/reviews start",
+    "start-service-inventory": "yarn --cwd packages/inventory start",
+    "start-services": "concurrently \"yarn:start-service-*\"",
+    "postinstall": "lerna bootstrap"
+  },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.19.0"
-  }
+    "concurrently": "^5.0.0",
+    "lerna": "^3.19.0",
+    "nodemon": "^2.0.0"
+  },
+  "dependencies": {}
 }

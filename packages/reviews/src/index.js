@@ -10,7 +10,7 @@ require('dotenv').config();
 const reviews = require('../data/reviews.js');
 const users = require('../data/users.js');
 
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 5002;
 
 // -----------------------------------------
 // Schema definition
@@ -27,7 +27,7 @@ const typeDefs = gql`
 
   extend type User @key(fields: "id") {
     id: ID! @external
-    username: String! @external
+    username: String @external
     reviews: [Review]
   }
 
@@ -45,20 +45,20 @@ const resolvers = {
     }
   },
   User: {
-    username(user) {
-      const found = users.find(username => username.id === user.id);
-      return found ? found.username : null;
-    },
     reviews(user) {
-      return reviews.find(review => review.authorID === user.id);
+      return reviews.filter(review => review.authorID === user.id);
     },
     numberOfReviews(user) {
       return reviews.filter(review => review.authorID === user.id).length;
+    },
+    username(user) {
+      const found = users.find(username => username.id === user.id);
+      return found ? found.username : null;
     }
   },
   Product: {
     reviews(product) {
-      return reviews.find(review => review.product.upc === product.upc);
+      return reviews.filter(review => review.product.upc === product.upc);
     }
   }
 };

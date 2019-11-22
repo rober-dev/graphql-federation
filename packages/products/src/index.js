@@ -9,7 +9,7 @@ require('dotenv').config();
 // Custom products
 const products = require('../data/products.js');
 
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 5002;
 
 // -----------------------------------------
 // Schema definition

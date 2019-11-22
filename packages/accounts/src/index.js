@@ -9,7 +9,7 @@ require('dotenv').config();
 // Custom users
 const users = require('../data/users.js');
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 5001;
 
 // -----------------------------------------
 // Schema definition
